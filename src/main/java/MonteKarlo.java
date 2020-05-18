@@ -19,7 +19,6 @@ public class MonteKarlo {
             long m = System.currentTimeMillis();
             long pointsInCircle = forkJoinPool.invoke(new ForkJoinCheck(currentPoints, threads));
             double pi = (double) pointsInCircle / currentPoints * 4;
-            System.out.println(pointsInCircle+"/"+currentPoints);
             System.out.println("Pi is " + pi + "; Threads " + threads + "; Iterations " + currentPoints + "; Time " + (System.currentTimeMillis() - m) + "ms");
             currentPoints *= 2;
         }
@@ -54,10 +53,8 @@ public class MonteKarlo {
                 if (vec(x, y) < RADIUS) {
                     pointsInCircle++;
                 }
-                i++;
             }
-            System.out.println(currentPoints + "/" + pointsInCircle  + " in thread");
-            return pointsInCircle*2;
+            return pointsInCircle;
         }
 
         double vec(double x, double y) {
